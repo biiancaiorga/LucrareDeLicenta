@@ -1,0 +1,107 @@
+/* Fullscreen container styling */
+.authContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121619;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.3s ease-in-out;
+    color: white;
+  }
+  
+  .authContent {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: #1c1e21;
+    text-align: center;
+  }
+  
+  .authContent h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: white;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .formGroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    background: #333;
+    color: white;
+  }
+  
+  .formGroup input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .toggleLink {
+    color: #4CAF50;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .toggleLink:hover {
+    color: #388E3C;
+  }
+  
+  .authContainer.exiting {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .successMessage {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
