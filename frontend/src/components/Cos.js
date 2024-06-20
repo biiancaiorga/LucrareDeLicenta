@@ -1,9 +1,16 @@
-import React from 'react';
-import Cookies from 'js-cookie'; // Import js-cookie to handle cookies
+import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import '../styles/Basket.css';
 
 function Cos({ basket = [], setBasket }) {
-  const handleDelete = (index) => {
+  const [showOrderForm, setShowOrderForm] = useState(false);
+  const [street, setStreet] = useState('');
+  const [number, setNumber] = useState('');
+  const [city, setCity] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleDelete = index => {
     const updatedBasket = basket.filter((_, i) => i !== index);
     setBasket(updatedBasket);
   };
@@ -19,16 +26,23 @@ function Cos({ basket = [], setBasket }) {
   };
 
   const total = basket.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  const isLoggedIn = !!Cookies.get('jwtToken'); // Check if the user is logged in
+  const isLoggedIn = !!Cookies.get('jwtToken');
 
   const handlePlaceOrder = () => {
     if (isLoggedIn) {
-      // Placeholder for payment method integration
-      alert('Proceed to payment');
+      setShowOrderForm(true);
     } else {
       alert('You need to be logged in to place an order.');
     }
+  };
+
+  const handleSubmitOrder = () => {
+    if (!street.trim() || !number.trim() || !city.trim() || !postalCode.trim() || !phoneNumber.trim()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    alert('Order placed successfully!');
+    setShowOrderForm(false);
   };
 
   return (
@@ -44,7 +58,7 @@ function Cos({ basket = [], setBasket }) {
                   type="number"
                   min="1"
                   value={item.quantity}
-                  onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
+                  onChange={e => handleQuantityChange(index, parseInt(e.target.value))}
                 />
                 <button onClick={() => handleDelete(index)}>
                   <i className="fas fa-trash"></i>
@@ -62,6 +76,24 @@ function Cos({ basket = [], setBasket }) {
           Place Order
         </button>
       </div>
+      {showOrderForm && (
+        <div className="orderForm">
+          <input type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} required />
+          <input type="text" placeholder="Street" value={street} onChange={e => setStreet(e.target.value)} required />
+          <input type="text" placeholder="Number" value={number} onChange={e => setNumber(e.target.value)} required />
+          <input type="text" placeholder="Postal Code" value={postalCode} onChange={e => setPostalCode(e.target.value)} required />
+          <input
+            type="tel"
+            pattern="[0-9]*"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={e => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
+            required
+          />
+          <button onClick={handleSubmitOrder}>Confirm Order</button>
+          <button onClick={() => setShowOrderForm(false)}>Cancel</button>
+        </div>
+      )}
     </div>
   );
 }

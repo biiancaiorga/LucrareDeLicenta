@@ -25,7 +25,7 @@ function About() {
             </div>
           </div>
           <div className="col-md-6">
-            <Carousel className="carousel">
+            <Carousel className="carousel" interval={2000}>
               <Carousel.Item>
                 <img className="sliderImage" src={photo1} alt="First slide" />
               </Carousel.Item>

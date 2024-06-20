@@ -41,7 +41,7 @@ function MainApp({ basket, setBasket }) {
         <Route path="/reservation" exact element={<Reservation />} />
         <Route path="/about" exact element={<About />} />
       </Routes>
-      {location.pathname !== '/basket' && location.pathname !== '/menu' && <Footer />}
+      {location.pathname !== '/basket' && location.pathname !== '/menu'  && <Footer />}
     </div>
   );
 }
